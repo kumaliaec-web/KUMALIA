@@ -25,7 +25,10 @@ except ImportError:
 app = Flask(__name__)
 # Clave secreta cargada de forma segura por variable de entorno (con respaldo para desarrollo local)
 app.secret_key = os.environ.get('SECRET_KEY', 'clave_secreta_dinevia_super_segura_2026')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+db_url = os.environ.get('DATABASE_URL', 'sqlite:///database.db')
+if db_url.startswith('postgres://'):
+  db_url = db_url.replace('postgres://', 'postgresql://', 1)
+app.config['SQLALCHEMY_DATABASE_URI'] = db_url
 
 db = SQLAlchemy(app)
 login_manager = LoginManager()
