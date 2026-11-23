@@ -256,6 +256,8 @@ Sitemap: https://kumalia.onrender.com/sitemap.xml
     return contenido, 200, {
         'Content-Type': 'text/plain; charset=utf-8'
     }
+from flask import Response
+
 @app.route('/sitemap.xml')
 def sitemap():
     contenido = """<?xml version="1.0" encoding="UTF-8"?>
@@ -263,14 +265,13 @@ def sitemap():
     <url>
         <loc>https://kumalia.onrender.com/</loc>
     </url>
-    <url>
-        <loc>https://kumalia.onrender.com/login</loc>
-    </url>
 </urlset>
 """
-    return contenido, 200, {
-        'Content-Type': 'application/xml; charset=utf-8'
-    }
+    return Response(
+        contenido,
+        status=200,
+        mimetype='application/xml'
+    )
 # ==========================================
 # RUTAS DE AUTENTICACIÓN
 # ==========================================
