@@ -256,7 +256,21 @@ Sitemap: https://kumalia.onrender.com/sitemap.xml
     return contenido, 200, {
         'Content-Type': 'text/plain; charset=utf-8'
     }
-
+@app.route('/sitemap.xml')
+def sitemap():
+    contenido = """<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://kumalia.onrender.com/</loc>
+    </url>
+    <url>
+        <loc>https://kumalia.onrender.com/login</loc>
+    </url>
+</urlset>
+"""
+    return contenido, 200, {
+        'Content-Type': 'application/xml; charset=utf-8'
+    }
 # ==========================================
 # RUTAS DE AUTENTICACIÓN
 # ==========================================
