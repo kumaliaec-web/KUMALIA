@@ -246,7 +246,10 @@ def procesar_archivo_factura(archivo):
     except Exception:
       pass
   return extraer_monto_de_texto(texto_extraido)
-
+@app.route('/robots.txt')
+def robots_txt():
+  contenido = 'User-agent: *\nAllow: /\n'
+  return contenido, 200, {'Content-Type': 'text/plain; charset=utf-8'}
 
 # ==========================================
 # RUTAS DE AUTENTICACIÓN
