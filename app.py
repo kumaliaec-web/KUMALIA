@@ -248,8 +248,14 @@ def procesar_archivo_factura(archivo):
   return extraer_monto_de_texto(texto_extraido)
 @app.route('/robots.txt')
 def robots_txt():
-  contenido = 'User-agent: *\nAllow: /\n'
-  return contenido, 200, {'Content-Type': 'text/plain; charset=utf-8'}
+    contenido = """User-agent: *
+Allow: /
+
+Sitemap: https://kumalia.onrender.com/sitemap.xml
+"""
+    return contenido, 200, {
+        'Content-Type': 'text/plain; charset=utf-8'
+    }
 
 # ==========================================
 # RUTAS DE AUTENTICACIÓN
